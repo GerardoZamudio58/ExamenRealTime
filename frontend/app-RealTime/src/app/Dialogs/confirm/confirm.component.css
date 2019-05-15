@@ -1,0 +1,18 @@
+.Botones {
+    margin-top: 20px;
+    text-align: right;
+}
+
+.BtnCancelar, .BtnAceptar {
+    border-radius: 25px;
+    margin-left: 10px;
+}
+
+.BtnCancelar {
+    background: #eee;
+}
+
+.BtnAceptar {
+    background: #202c4c;
+    color: #FFF;
+}

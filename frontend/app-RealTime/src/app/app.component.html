@@ -9,7 +9,19 @@
                 <p>Apellido Materno: </p>
                 <p>Correo: </p>
                 <p>Edad: </p>
+                <div>
+                    <button mat-icon-button (click)="BtnEditarClick(0)">
+                        <mat-icon aria-label="Example icon-button with a heart icon">edit</mat-icon>
+                    </button>
+                    <button mat-icon-button (click)="BtnEliminarClick()">
+                        <mat-icon aria-label="Example icon-button with a heart icon">delete</mat-icon>
+                    </button>
+                </div>
             </mat-card>
         </li>
     </ul>
 </div>
+
+<button mat-fab class="BtnAdd" (click)="BtnEditarClick(0)">
+    <mat-icon>person_add</mat-icon>
+</button>

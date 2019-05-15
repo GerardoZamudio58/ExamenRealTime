@@ -36,3 +36,11 @@
     height: 50px;
     border-radius: 100%;
 }
+
+.BtnAdd {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background: #202c4c;
+    color: #FFF;
+}

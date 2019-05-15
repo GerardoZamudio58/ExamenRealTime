@@ -1,0 +1,56 @@
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.container > * {
+    width: 100%;
+}
+
+.Botones {
+    margin-top: 20px;
+    text-align: right;
+}
+
+.BtnCancelar, .BtnAceptar {
+    border-radius: 25px;
+    margin-left: 10px;
+}
+
+.BtnCancelar {
+    background: #eee;
+}
+
+.BtnAceptar {
+    background: #202c4c;
+    color: #FFF;
+}
+
+.cajaAvatar {
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+    margin: 0 auto;
+    text-align: center;
+    display: block;
+    cursor: pointer;
+    opacity: 1;
+}
+
+.avatar:hover {
+    opacity: .4;
+}
+
+.file {
+    display: none;
+}
+
+
+
