@@ -2,6 +2,8 @@
 import { Router, Request, Response } from 'express';
 import mysql from 'mysql';
 import { SERVER_BD, PORT_BD, BD, User_BD, Pass_BD } from '../global/environment';
+import multer from 'multer';
+import path from 'path';
 
 const router = Router();
 
@@ -12,6 +14,34 @@ const CONNECTION = mysql.createConnection({
     database: BD
 });
 
+
+let storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, './Uploads');
+    },
+    filename: (req: Request, file, cb) => {
+        cb(null, `${req.body.nombre}-${file.originalname}`);
+    }
+});
+
+let upload = multer({
+    storage: storage,
+    limits: { fileSize: (10 * 1024 * 1024) }
+}).single('avatar');
+
+function subirAvatar(req: Request, res: Response, next: Function) {
+    upload(req, res, (err) => {
+        if (err) {
+            res.send({
+                ok: false,
+                resp: 'Error',
+                error: 'El avatar debe ser menor de 10 Mb'
+            });
+        } else {
+            next();
+        }
+    });
+}
 
 router.get('/Usuarios', ( req: Request, res: Response  ) => {
     CONNECTION.query('SELECT * FROM usuario', function (error, results, fields) {
@@ -101,10 +131,16 @@ router.delete('/Usuario/:idUsuario', (req: Request, res: Response) => {
 });
 
 
-router.post('/Usuario', ( req: Request, res: Response  ) => {
+router.post('/Usuario', subirAvatar, ( req: Request, res: Response  ) => {
+    let avatar = "";
 
-    CONNECTION.query(`INSERT INTO Usuario(nombre, apPaterno, apMaterno, correo, edad) values 
-        ('${ req.body.nombre}', '${req.body.apPaterno}', '${req.body.apMaterno}', '${req.body.correo}', ${req.body.edad});`, function (error, results, fields) {
+    if (req.file) {
+        // console.dir(req.file);
+        avatar = req.file.filename;
+    }
+
+    CONNECTION.query(`INSERT INTO Usuario(nombre, apPaterno, apMaterno, correo, edad, foto) values 
+        ('${ req.body.nombre}', '${req.body.apPaterno}', '${req.body.apMaterno}', '${req.body.correo}', ${req.body.edad}, '${avatar}');`, function (error, results, fields) {
             if (error) {
                 res.status(200);
                 res.json({
@@ -124,6 +160,11 @@ router.post('/Usuario', ( req: Request, res: Response  ) => {
 
 });
 
+router.get('/GetAvatar/:avatar', (req: Request, res: Response) => {
+    let avatar = req.params.avatar;
+    res.sendFile(path.resolve(`./Uploads/${avatar}`));
+
+});
 
 
 export default router;

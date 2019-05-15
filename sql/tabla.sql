@@ -11,3 +11,5 @@ CREATE TABLE Usuario(
 );
 
 insert into Usuario(nombre, apPaterno, apMaterno, correo, edad) values ('Lisandro', 'De los Santos', 'Martínez', 'lisann.mtz@gmail.com', 23);
+
+alter table Usuario add foto varchar(200);
