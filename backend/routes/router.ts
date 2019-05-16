@@ -44,7 +44,7 @@ function subirAvatar(req: Request, res: Response, next: Function) {
 }
 
 router.get('/Usuarios', ( req: Request, res: Response  ) => {
-    CONNECTION.query('SELECT * FROM usuario', function (error, results, fields) {
+    CONNECTION.query('SELECT * FROM Usuario', function (error, results, fields) {
         if (error) {
             res.status(200);
             res.json({
