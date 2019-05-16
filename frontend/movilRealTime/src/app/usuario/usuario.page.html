@@ -1,0 +1,41 @@
+<ion-header>
+    <ion-toolbar color="#202c4c">
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/home"></ion-back-button>
+        </ion-buttons>
+        <ion-title>{{ titulo }}Usuario</ion-title>
+        <ion-buttons slot="end">
+            <ion-button (click)="Guardar()">
+                Guardar
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-card class="tarjeta">
+        <div class="imgUsuario">
+                <img [src]="img" alt="" (click)="uploadImgs()">
+        </div>
+        <ion-item>
+            <ion-label position="floating">Nombre</ion-label>
+            <ion-input [(ngModel)]="usuario.nombre"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">Apellido Paterno</ion-label>
+            <ion-input [(ngModel)]="usuario.apPaterno"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">Apellido Materno</ion-label>
+            <ion-input [(ngModel)]="usuario.apMaterno"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">Correo</ion-label>
+            <ion-input type="email" [(ngModel)]="usuario.correo"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">Edad</ion-label>
+            <ion-input type="number" [(ngModel)]="usuario.edad"></ion-input>
+        </ion-item>
+    </ion-card>
+</ion-content>

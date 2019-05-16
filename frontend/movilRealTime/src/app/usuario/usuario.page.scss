@@ -1,0 +1,31 @@
+.btn {
+    width: 50%;
+}
+
+
+ion-toolbar, .BtnAdd {
+    background: #202c4c;
+    color: #FFF;
+}
+
+.imgUsuario {
+    width: 200px;
+    height: 200px;
+    border-radius: 100%;
+    margin: 40px auto;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.tarjeta {
+    padding: 10px;
+}
+
+.tarjeta ion-item {
+    margin-bottom: 20px;
+}
+
+.file {
+    display: none;
+}
+

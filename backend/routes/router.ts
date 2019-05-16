@@ -170,6 +170,18 @@ router.get('/GetAvatar/:avatar', (req: Request, res: Response) => {
 
 });
 
+router.post('/UploadImg/:avatar', subirAvatar, (req: Request, res: Response) => {
+    if (req.file) {
+        
+        // console.dir(req.file);
+        
+	    res.send({
+            img: req.file
+        });
+	}
+
+});
+
 
 export default router;
 
