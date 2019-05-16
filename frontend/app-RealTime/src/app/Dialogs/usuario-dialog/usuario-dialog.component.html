@@ -1,27 +1,31 @@
 <h1 mat-dialog-title>{{ titulo }}</h1>
 <div mat-dialog-content>
-    <img class="avatar" src="./assets/user.png" alt="">
-    <input type="file" class="file">
+    <div class="avatar">
+        <img
+            [src]=" usuario.idUsuario && imagenChanged == false ? (imgURL | domSeguro:'/GetAvatar/') : (imgURL || './assets/user.png')"
+            alt="" (click)="fileAvatar.value = null; fileAvatar.click();">
+    </div>
+    <input type="file" #fileAvatar class="file" name="avatar" (change)="fileChange($event)">
         
     <form class="container">
         <mat-form-field>
-            <input matInput placeholder="Nomber">
+            <input matInput placeholder="Nomber" name="nombre" [(ngModel)]="usuario.nombre">
         </mat-form-field>
         <mat-form-field>
-            <input matInput placeholder="Apellido Paterno">
+            <input matInput placeholder="Apellido Paterno" name="apPaterno" [(ngModel)]="usuario.apPaterno">
         </mat-form-field>
         <mat-form-field>
-            <input matInput placeholder="Apellido Materno">
+            <input matInput placeholder="Apellido Materno" name="apMaterno" [(ngModel)]="usuario.apMaterno">
         </mat-form-field>
         <mat-form-field>
-            <input matInput placeholder="Correo">
+            <input matInput type="email" placeholder="Correo" name="correo" [(ngModel)]="usuario.correo">
         </mat-form-field>
         <mat-form-field>
-            <input matInput placeholder="Edad">
+            <input matInput type="number" placeholder="Edad" name="edad" [(ngModel)]="usuario.edad">
         </mat-form-field>
     </form>
 </div>
 <div mat-dialog-actionsc class="Botones">
     <button mat-button (click)="onNoClick()" class="BtnCancelar">Cancelar</button>
-    <button mat-button [mat-dialog-close]="true" cdkFocusInitial class="BtnAceptar">Aceptar</button>
+    <button mat-button [mat-dialog-close]="usuario" cdkFocusInitial class="BtnAceptar">Aceptar</button>
 </div>

@@ -31,6 +31,49 @@
     align-items: center;
 }
 
+.Elemento mat-card div button {
+    background: #202c4c;
+    color: #FFF;
+    text-align: center;
+    margin: 5px;
+}
+
+.Elemento mat-card div button span {
+    display: none;
+}
+
+
+@media(max-width: 500px ) {
+
+    .Elemento mat-card img {
+        margin: 0 auto;
+        display: block;
+    }
+
+    .Elemento mat-card > p {
+        margin: 10px 0;
+        width: 100%;
+    }
+    .Elemento mat-card div {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .Elemento mat-card div button {
+        width: 45%;
+        border-radius: 10px;
+    }
+
+    .Elemento mat-card div button span {
+        display: inline;
+    }
+}
+
+
 .Imagen {
     width: 50px;
     height: 50px;
@@ -38,7 +81,7 @@
 }
 
 .BtnAdd {
-    position: absolute;
+    position: fixed;
     bottom: 20px;
     right: 20px;
     background: #202c4c;
