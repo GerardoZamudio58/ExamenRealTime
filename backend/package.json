@@ -9,8 +9,19 @@
   "author": "Lisandro Martínez",
   "license": "MIT",
   "dependencies": {
+    "@types/socket.io": "^2.1.2",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "multer": "^1.4.1",
+    "mysql": "^2.17.1",
+    "socket.io": "^2.2.0",
+    "typescript": "^3.4.5"
+  },
+  "devDependencies": {
+    "@types/body-parser": "^1.17.0",
+    "@types/cors": "^2.8.5",
+    "@types/multer": "^1.3.7",
+    "@types/mysql": "^2.15.6"
   }
 }

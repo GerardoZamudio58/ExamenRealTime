@@ -1,0 +1,29 @@
+<h1 class="Titulo">Usuairos</h1>
+<div class="Contenido">
+    <ul class="Lista">
+        <li class="Elemento" *ngFor="let usuario of usuarios">
+            <mat-card>
+                <img [src]="usuario.foto | domSeguro: '/GetAvatar/'" alt="" class="Imagen">
+                <p><strong>Nombre:</strong> {{ usuario.nombre }}</p>
+                <p><strong>Apellido Paterno:</strong> {{ usuario.apPaterno }}</p>
+                <p><strong>Apellido Materno:</strong> {{ usuario.apMaterno }}</p>
+                <p><strong>Correo:</strong> {{ usuario.correo }}</p>
+                <p><strong>Edad:</strong> {{ usuario.edad }}</p>
+                <div>
+                    <button mat-icon-button (click)="BtnEditarClick(usuario)">
+                        <mat-icon aria-label="Example icon-button with a heart icon">edit</mat-icon>
+                        <span> Editar</span>
+                    </button>
+                    <button mat-icon-button (click)="BtnEliminarClick(usuario.idUsuario)">
+                        <mat-icon aria-label="Example icon-button with a heart icon">delete</mat-icon>
+                        <span> Eliminar</span>
+                    </button>
+                </div>
+            </mat-card>
+        </li>
+    </ul>
+</div>
+
+<button mat-fab class="BtnAdd" (click)="BtnEditarClick(null)">
+    <mat-icon>person_add</mat-icon>
+</button>
