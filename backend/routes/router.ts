@@ -172,7 +172,7 @@ router.post('/Usuario', subirAvatar, ( req: Request, res: Response  ) => {
         // console.dir(req.file);
         avatar = req.file.filename;
     } else {
-        avatar = `, '${req.body.avatar}' `;
+        avatar = req.body.avatar;
     }
 
     CONNECTION.query(`INSERT INTO Usuario(nombre, apPaterno, apMaterno, correo, edad, foto) values 
