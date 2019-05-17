@@ -15,6 +15,7 @@ export class UsuarioService {
     constructor(
         private httpClient: HttpClient,
         private wsService: WebsocketService,
+        // tslint:disable-next-line:variable-name
         private _FileTransfer: FileTransfer
     ) {
         const base64 = 'data:image/png;base64,';
