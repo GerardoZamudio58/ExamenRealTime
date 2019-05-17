@@ -203,10 +203,17 @@ router.post('/UploadImg/:avatar', subirAvatarPAram, (req: Request, res: Response
         
         // console.dir(req.file);
         
-	    res.send({
-            img: req.file
+        res.json({
+            ok: true,
+            resp: req.file,
+            error: null
         });
-	}
+	} else {
+        res.json({
+            ok: false,
+            resp: req
+        });
+    }
 
 });
 
