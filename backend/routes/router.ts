@@ -119,7 +119,7 @@ router.put('/Usuario/:idUsuario', subirAvatar, ( req: Request, res: Response  ) 
         // console.dir(req.file);
         avatar = `,  foto = '${req.file.filename}' `;
     } else {
-        avatar = `,  foto = '${req.params.avatar}' `;
+        avatar = `,  foto = '${req.body.avatar}' `;
     }
     CONNECTION.query(`UPDATE Usuario SET nombre = '${req.body.nombre}', apPaterno = '${req.body.apPaterno}', apMaterno = '${req.body.apMaterno}', 
         correo = '${req.body.correo}', edad = ${req.body.edad} ${avatar} WHERE idUsuario = ${ req.params.idUsuario };`, function (error, results, fields) {
