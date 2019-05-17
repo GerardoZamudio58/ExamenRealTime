@@ -72,7 +72,7 @@ function subirAvatarPAram(req: Request, res: Response, next: Function) {
 }
 
 router.get('/Usuarios', ( req: Request, res: Response  ) => {
-    CONNECTION.query('SELECT * FROM Usuario', function (error, results, fields) {
+    CONNECTION.query(`select ifnull(nombre, '') as nombre, ifnull(apPaterno, '') as apPaterno, ifnull(apMaterno, '') as apMaterno, ifnull(correo, '') as correo, edad from Usuario;`, function (error, results, fields) {
         if (error) {
             res.status(200);
             res.json({
@@ -171,6 +171,8 @@ router.post('/Usuario', subirAvatar, ( req: Request, res: Response  ) => {
     if (req.file) {
         // console.dir(req.file);
         avatar = req.file.filename;
+    } else {
+        avatar = `,  foto = '${req.body.avatar}' `;
     }
 
     CONNECTION.query(`INSERT INTO Usuario(nombre, apPaterno, apMaterno, correo, edad, foto) values 
