@@ -29,7 +29,7 @@ let storageParam = multer.diskStorage({
         cb(null, './Uploads');
     },
     filename: (req: Request, file, cb) => {
-        cb(null, `${req.params.avatar}-${file.originalname}`);
+        cb(null, `${Date.now()}-${file.originalname}`);
     }
 });
 
