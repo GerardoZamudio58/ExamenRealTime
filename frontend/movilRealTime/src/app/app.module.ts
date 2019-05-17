@@ -14,6 +14,9 @@ import { environment } from 'src/environments/environment';
 import { UsuarioService } from './Servicios/usuario.service';
 import { WebsocketService } from './Servicios/web-socket.service';
 import { HttpClientModule } from '@angular/common/http';
+import { Camera } from '@ionic-native/camera/ngx';
+
+import { FileTransfer } from '@ionic-native/file-transfer/ngx';
 
 const config: SocketIoConfig = {
     url: environment.URL_SERVER, options: {}
@@ -35,7 +38,9 @@ const config: SocketIoConfig = {
         SplashScreen,
         { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
         UsuarioService,
-        WebsocketService
+        WebsocketService,
+        Camera,
+        FileTransfer
     ],
     bootstrap: [AppComponent],
     exports: []

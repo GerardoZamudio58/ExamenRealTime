@@ -1,5 +1,7 @@
 {
   "name": "movilRealTime",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

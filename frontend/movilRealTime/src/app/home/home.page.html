@@ -22,18 +22,18 @@
                 <ion-label>{{ usuario.correo }}</ion-label>
             </ion-item>
             <ion-item>
-                <ion-button color="medium" class="btn" (click)="onClick()">
+                <ion-button color="medium" class="btn" (click)="EditarUsuario(usuario.idUsuario)">
                     Editar 
                     <ion-icon name="create"></ion-icon>
                 </ion-button>
-                <ion-button color="danger" class="btn" (click)="onClick()">
+                <ion-button color="danger" class="btn" (click)="btnEliminarClick(usuario.idUsuario)">
                     Eliminar 
                     <ion-icon name="trash"></ion-icon>
                 </ion-button>
             </ion-item>
         </ion-list>
     </ion-card>
-    <button  color="#202c4c" class="BtnAdd">
+    <button  color="#202c4c" (click)="AgregarUsuario()" class="BtnAdd">
         <ion-icon name="add"></ion-icon>
     </button>
 </ion-content>
