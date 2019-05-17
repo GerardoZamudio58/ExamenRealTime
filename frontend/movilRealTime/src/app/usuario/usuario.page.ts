@@ -20,11 +20,12 @@ export class UsuarioPage implements OnInit {
     public idUsuario: string;
     public img: any;
     public usuario: Usuario;
+    public cambioImagen: boolean;
     constructor(
         private activatedRoute: ActivatedRoute,
         private camera: Camera,
         private usuarioService: UsuarioService,
-        private navCtrl:NavController
+        private navCtrl: NavController
     ) {
         this.titulo = 'Agregar ';
         this.idUsuario = '';
@@ -36,6 +37,7 @@ export class UsuarioPage implements OnInit {
             correo: null,
             edad: null
         };
+        this.cambioImagen = false;
     }
 
     ngOnInit() {
@@ -62,9 +64,23 @@ export class UsuarioPage implements OnInit {
 
     Guardar() {
         console.log('Usuario => ', this.usuario);
+        if (this.cambioImagen === true) {
+            console.log('cambioImagen => ', this.cambioImagen);
+            console.log('img => ', this.img);
+            this.usuarioService.subirImagen(this.img).then( result => {
+                console.log(result);
+                this.SubirUsuario();
+            }, err => console.log);
+        } else {
+            this.SubirUsuario();
+        }
+    }
+
+    SubirUsuario() {
+        console.log('pasa');
         if (this.idUsuario !== '0') {
             // tslint:disable-next-line: radix
-            this.usuarioService.ActualizarUsuario(this.usuario, parseInt(this.idUsuario) ).subscribe((result: Response) => {
+            this.usuarioService.ActualizarUsuario(this.usuario, parseInt(this.idUsuario)).subscribe((result: Response) => {
                 this.usuarioService.EnviarCambio();
                 console.log(result);
                 this.navCtrl.back();
@@ -78,7 +94,7 @@ export class UsuarioPage implements OnInit {
         }
     }
 
-    uploadImgs() {
+    uploadImg() {
         const options: CameraOptions = {
             quality: 80,
             destinationType: this.camera.DestinationType.FILE_URI,
@@ -92,9 +108,10 @@ export class UsuarioPage implements OnInit {
             // imageData is either a base64 encoded string or a file URI
             // If it's base64 (DATA_URL):
             const img = window.Ionic.WebView.convertFileSrc(imageData);
-            const base64Image = 'data:image/jpeg;base64,' + imageData;
+            // const base64Image = 'data:image/jpeg;base64,' + imageData;
             this.img = img;
-            this.usuario.avatar = base64Image;
+            this.usuario.avatar = img.split('/')[img.split('/').length - 1];
+            this.cambioImagen = true;
         }, (err) => {
             // Handle error
         });

@@ -20,7 +20,16 @@ let storage = multer.diskStorage({
         cb(null, './Uploads');
     },
     filename: (req: Request, file, cb) => {
-        cb(null, `${req.body.nombre}-${file.originalname}`);
+        cb(null, `${ Date.now() }${req.body.nombre}`);
+    }
+});
+
+let storageParam = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, './Uploads');
+    },
+    filename: (req: Request, file, cb) => {
+        cb(null, `${req.params.avatar}-${file.originalname}`);
     }
 });
 
@@ -29,8 +38,27 @@ let upload = multer({
     limits: { fileSize: (10 * 1024 * 1024) }
 }).single('avatar');
 
+let uploadParams = multer({
+    storage: storageParam,
+    limits: { fileSize: (10 * 1024 * 1024) }
+}).single('avatar');
+
 function subirAvatar(req: Request, res: Response, next: Function) {
     upload(req, res, (err) => {
+        if (err) {
+            res.send({
+                ok: false,
+                resp: 'Error',
+                error: 'El avatar debe ser menor de 10 Mb'
+            });
+        } else {
+            next();
+        }
+    });
+}
+
+function subirAvatarPAram(req: Request, res: Response, next: Function) {
+    uploadParams(req, res, (err) => {
         if (err) {
             res.send({
                 ok: false,
@@ -170,7 +198,7 @@ router.get('/GetAvatar/:avatar', (req: Request, res: Response) => {
 
 });
 
-router.post('/UploadImg/:avatar', subirAvatar, (req: Request, res: Response) => {
+router.post('/UploadImg/:avatar', subirAvatarPAram, (req: Request, res: Response) => {
     if (req.file) {
         
         // console.dir(req.file);

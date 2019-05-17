@@ -67,7 +67,7 @@ export class UsuarioService {
 
     subirImagen(img: string) {
         const options: FileUploadOptions = {
-            fileKey: 'img'
+            fileKey: 'avatar'
         };
         const PATHIMG = img.split('/');
         const NAMEIMG = PATHIMG[PATHIMG.length - 1];
