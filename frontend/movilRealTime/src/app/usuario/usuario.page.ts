@@ -64,8 +64,10 @@ export class UsuarioPage implements OnInit {
 
     Guardar() {
         if (this.cambioImagen === true) {
-            this.usuarioService.subirImagen(this.usuario.avatar).then( result => {
+            this.usuarioService.subirImagen(this.usuario.avatar).then( (result: any) => {
                 console.log(result);
+                const json = JSON.parse(result.response);
+                this.usuario.avatar = json.resp.filename;
                 this.SubirUsuario();
             }).catch(err => console.log);
         } else {
