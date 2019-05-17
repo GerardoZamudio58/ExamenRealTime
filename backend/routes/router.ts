@@ -205,7 +205,7 @@ router.post('/UploadImg/:avatar', subirAvatarPAram, (req: Request, res: Response
         
         res.json({
             ok: true,
-            resp: req.file.originalname,
+            resp: req.file,
             error: null
         });
 	} else {
