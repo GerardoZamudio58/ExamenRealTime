@@ -63,14 +63,11 @@ export class UsuarioPage implements OnInit {
     }
 
     Guardar() {
-        console.log('Usuario => ', this.usuario);
         if (this.cambioImagen === true) {
-            console.log('cambioImagen => ', this.cambioImagen);
-            console.log('img => ', this.img);
-            this.usuarioService.subirImagen(this.img).then( result => {
+            this.usuarioService.subirImagen(this.usuario.avatar).then( result => {
                 console.log(result);
                 this.SubirUsuario();
-            }, err => console.log);
+            }).catch(err => console.log);
         } else {
             this.SubirUsuario();
         }
@@ -110,7 +107,7 @@ export class UsuarioPage implements OnInit {
             const img = window.Ionic.WebView.convertFileSrc(imageData);
             // const base64Image = 'data:image/jpeg;base64,' + imageData;
             this.img = img;
-            this.usuario.avatar = img.split('/')[img.split('/').length - 1];
+            this.usuario.avatar = imageData;
             this.cambioImagen = true;
         }, (err) => {
             // Handle error

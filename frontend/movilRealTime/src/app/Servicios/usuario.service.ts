@@ -73,6 +73,7 @@ export class UsuarioService {
         const NAMEIMG = PATHIMG[PATHIMG.length - 1];
 
         const fileTranfer: FileTransferObject = this._FileTransfer.create();
+        console.log('fileTranfer', fileTranfer);
         return fileTranfer.upload(img, `${ this.url }/UploadImg/${NAMEIMG}`, options);
     }
 }
