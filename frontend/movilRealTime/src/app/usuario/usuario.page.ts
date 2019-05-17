@@ -31,10 +31,10 @@ export class UsuarioPage implements OnInit {
         this.idUsuario = '';
         this.img = './assets/user.png';
         this.usuario = {
-            nombre: null,
-            apPaterno: null,
-            apMaterno: null,
-            correo: null,
+            nombre: '',
+            apPaterno: '',
+            apMaterno: '',
+            correo: '',
             edad: null
         };
         this.cambioImagen = false;
